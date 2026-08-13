@@ -23,6 +23,7 @@ const path = require('path');
 const crypto = require('crypto');
 
 const PORT = Number(process.env.PORT || 8730);
+const HOST = process.env.HOST || '127.0.0.1';
 const INGEST_SECRET = process.env.ORACLE_INGEST_SECRET || '';
 const AGENT_SECRET = process.env.ORACLE_AGENT_SECRET || '';
 const DATA_FILE = process.env.DATA_FILE || path.join(__dirname, 'data', 'oracle.json');
@@ -141,8 +142,8 @@ loadStore();
 const server = http.createServer((req, res) => {
   route(req, res).catch((e) => json(res, 500, { error: e.message }));
 });
-server.listen(PORT, () => {
-  console.log(`Data Agent Oracle listening on :${PORT}`);
+server.listen(PORT, HOST, () => {
+  console.log(`Data Agent Oracle listening on ${HOST}:${PORT}`);
   console.log(`events loaded: ${events.length}`);
   if (!INGEST_SECRET) console.warn('WARN: ORACLE_INGEST_SECRET not set — ingest verification disabled');
 });
