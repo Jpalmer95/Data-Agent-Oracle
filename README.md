@@ -23,6 +23,22 @@ GetFreeQuote platform
   Agents  GET /feed (Bearer agent key)  ->  real-time needs  (+ /usage billing)
 ```
 
+## Relay worker
+
+`relay.js` drains the GetFreeQuote outbox and forwards signed events to `/ingest`.
+
+```bash
+# one pass (cron every minute)
+POLL_URL='https://getfreequote.org/api/oracle/poll' \
+POLL_SECRET='<getfreequote-ORACLE_POLL_SECRET>' \
+INGEST_URL='http://127.0.0.1:8730/ingest' \
+INGEST_SECRET='<oracle-ORACLE_INGEST_SECRET>' \
+node relay.js
+
+# or daemon (every 60s)
+npm run relay:loop
+```
+
 ## Quick start
 
 ```bash

@@ -29,9 +29,11 @@ and data market.
   signatures; `GET /feed` returns events and increments usage.
 
 ### Phase 1 — Relay wiring
-- [ ] A relay worker (cron/daemon) drains GetFreeQuote `/api/oracle/poll` (Bearer
-      `ORACLE_POLL_SECRET`) and POSTs the batch to `/ingest`.
-- [ ] Shared secret (`ORACLE_SIGNING_SECRET` == `ORACLE_INGEST_SECRET`) confirmed.
+- [x] Relay worker (`relay.js`): drains GetFreeQuote `/api/oracle/poll` (Bearer
+      `ORACLE_POLL_SECRET`) and POSTs the batch to `/ingest`. One-pass mode for cron,
+      `--loop` for daemon.
+- [x] Shared secret (`ORACLE_SIGNING_SECRET` == `ORACLE_INGEST_SECRET`) confirmed in deploy.
+- [ ] Verified end-to-end on live traffic (a created job appears in `/feed`).
 - **Success Criteria:** a job created in GetFreeQuote appears in this service's `/feed`
   within the relay interval (verified end-to-end).
 

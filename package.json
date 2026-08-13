@@ -6,7 +6,9 @@
   "type": "commonjs",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "relay": "node relay.js",
+    "relay:loop": "node relay.js --loop 60"
   },
   "engines": {
     "node": ">=18"
