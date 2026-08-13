@@ -1,0 +1,15 @@
+{
+  "name": "data-agent-oracle",
+  "version": "0.1.0",
+  "description": "Paid agent-oracle: ingest HMAC-signed events from GetFreeQuote, serve a queryable agent feed with per-key usage accounting (L402 microtransaction billing foundation).",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}
